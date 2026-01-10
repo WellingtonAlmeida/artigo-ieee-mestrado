@@ -1,0 +1,47 @@
+# Arquivos do modelo
+*.png
+*.cls
+*.tfm
+*.pfb
+*.fd
+*.map
+*.sty
+*.bst
+
+# Diretórios de saída
+*.aux
+*.log
+*.out
+*.toc
+*.lof
+*.lot
+*.bbl
+*.blg
+*.fls
+*.fdb_latexmk
+*.pdf
+*.synctex.gz
+
+# Arquivos temporários
+*.tmp
+*.bak
+*.orig
+
+# Arquivos de configuração de editor
+*.swp
+*~ 
+.ideas
+.vscode
+*.DS_Store
+
+# Arquivos específicos do LaTeX
+*.idx
+*.ilg
+*.ind
+*.glo
+*.gls
+*.glg
+
+# Diretórios de compilação
+_build/
+
