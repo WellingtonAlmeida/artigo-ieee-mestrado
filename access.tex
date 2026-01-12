@@ -570,6 +570,28 @@ Once the infrastructure was ready, the MPDM workflow was integrated into the tea
 
 To ensure quality and consistency, a validation cycle was established. Similar to a standard code review process, the insertion or update of any documentation was conditioned on the approval of Merge Requests. Senior members with greater technical and business expertise were appointed as reviewers, materializing the principle of collective responsibility and ensuring that the registered knowledge was both accurate and useful \cite{antoniol}.
 
+\section{Results and discussion}
+The evaluation of the MPDM revealed a combination of immediate benefits and contextual challenges that provide significant insights into technical knowledge management in public institutions.
+
+\subsection{Observed adoption and benefits}
+The acceptance of the proposed tools (Git, GitLab, and Markdown) was unanimous and immediate. Since these tools were already part of the developers' coding routine, the ``friction'' typically associated with learning new documentation platforms was non-existent.
+
+A major result was the organic expansion of the model. Although the study initially focused on legacy systems, the team proactively suggested applying MPDM to all new projects. This led to a hybrid architecture where the central repository acted as a portal, consolidating links to 32 existing projects and 9 new proofs of concept. This transition indicates that developers perceive minimalist documentation as a high-value investment when integrated into the development lifecycle.
+
+\subsection{The challenge of legacy friction}
+While adoption was successful for new systems, documentation for legacy code faced higher resistance. This does not indicate a failure of the MPDM, but rather reflects the reality of maintenance environments. Legacy systems often involve high cognitive load and urgent, reactive demands, which compete for the developer's time. In this context, documenting legacy code was perceived as a ``high-friction'' task compared to documenting new features. This finding suggests that for legacy environments, the ``trigger'' for documentation must be strictly aligned with the most critical and frequently maintained modules.
+
+\subsection{Strategic metaphors: Sidecar and Strangler Fig}
+The success of the MPDM can be explained through two architectural metaphors:
+
+\subsubsection{Sidecar Pattern}
+By keeping documentation in the same repository and lifecycle as the source code, the MPDM operates as a ``sidecar'' component \cite{microsoft}. It extends the value of the code without altering its core functionality, ensuring that both evolve in synchrony.
+
+\subsubsection{Strangler Fig Pattern}
+The MPDM adopts a philosophy of incremental replacement rather than massive migration. The new Knowledge Base acts as a modern ``facade'' that intercepts information searches. Over time, as new documentation is added during maintenance, the new base ``strangles'' the old, obsolete documentation in an organic and safe manner \cite{fowler}.
+\subsection{Qualitative validation}
+The study confirmed that a minimalist and agnostic approach fosters institutional longevity. By avoiding proprietary formats, the institution ensures that technical knowledge remains a long-term asset, immune to vendor lock-in. Furthermore, the use of Git for documentation provided unprecedented transparency and traceability, allowing the team to understand not only what changed in the business logic, but who changed it and why.
+
 \section{Conclusion}
 Although a conclusion may review the  main points of the paper, do not replicate the abstract as the conclusion. A
 conclusion might elaborate on the importance of the work or suggest
