@@ -205,26 +205,56 @@ The MPDM follows an incremental approach, where knowledge is captured and record
 The remainder of this paper is organized as follows. Section II reviews the related work and the results of a Systematic Literature Mapping. Section III describes the proposed MPDM in detail, including its principles and workflow. Section IV presents the case study and evaluation methodology. Section V discusses the results and the perceived value of the model. Finally, Section VI concludes the paper and suggests future research directions.
 
 
-\section{Units}
-Use either SI (MKS) or CGS as primary units. (SI units are strongly
-encouraged.) English units may be used as secondary units (in parentheses).
-This applies to papers in data storage. For example, write ``15
-Gb/cm$^{2}$ (100 Gb/in$^{2})$.'' An exception is when
-English units are used as identifiers in trade, such as ``3$^{1\!/\!2}$-in
-disk drive.'' Avoid combining SI and CGS units, such as current in amperes
-and magnetic field in oersteds. This often leads to confusion because
-equations do not balance dimensionally. If you must use mixed units, clearly
-state the units for each quantity in an equation.
+\section{Related works}
+%se either SI (MKS) or CGS as primary units. (SI units are strongly
+%ncouraged.) English units may be used as secondary units (in parentheses).
+%his applies to papers in data storage. For example, write ``15
+%b/cm$^{2}$ (100 Gb/in$^{2})$.'' An exception is when
+%nglish units are used as identifiers in trade, such as ``3$^{1\!/\!2}$-in
+%isk drive.'' Avoid combining SI and CGS units, such as current in amperes
+%nd magnetic field in oersteds. This often leads to confusion because
+%quations do not balance dimensionally. If you must use mixed units, clearly
+%tate the units for each quantity in an equation.
+%
+%he SI unit for magnetic field strength $H$ is A/m. However, if you wish to use
+%nits of T, either refer to magnetic flux density $B$ or magnetic field
+%trength symbolized as $\mu _{0}H$. Use the center dot to separate
+%ompound units, e.g., ``A$\cdot $m$^{2}$.''
+%
+%
+%Figure[t!](topskip=0pt, botskip=0pt, midskip=0pt){fig1.png}
+% \textbf{Magnetization as a function of applied field.
+%t is good practice to explain the significance of the figure in the caption.}\label{fig1}}
+The management of technical knowledge in legacy systems is a well-established challenge in software engineering. To identify the state of the art and existing gaps, a Systematic Literature Mapping (SLM) was conducted following the guidelines proposed by Kitchenham \cite{kitchenham}. The search was performed across three major databases (ACM Digital Library, IEEE Xplore, and Scopus), initially identifying 311 studies. After applying rigorous inclusion and exclusion criteria, 23 primary studies were selected for detailed analysis. The distribution of these studies and the identified research gaps are summarized in Table \ref{tab:slm_stats}
 
-The SI unit for magnetic field strength $H$ is A/m. However, if you wish to use
-units of T, either refer to magnetic flux density $B$ or magnetic field
-strength symbolized as $\mu _{0}H$. Use the center dot to separate
-compound units, e.g., ``A$\cdot $m$^{2}$.''
+The SLM revealed that while 56\% of the studies (13 papers) address the documentation of legacy systems directly \cite{garousi}, and another 13 papers propose structured methodologies or frameworks, there is a clear trend toward high-complexity technical solutions. For instance, several studies focus on automated reverse engineering, such as the use of PageRank algorithms to identify key classes \cite{chirila} or Latent Dirichlet Allocation (LDA) to recover architectural layers \cite{belle}. While these automated approaches are valuable for technical recovery, they often overlook the human factor and the continuous ``friction'' that developers face during daily maintenance.
 
+A critical gap was identified regarding the simplicity and adoption of these models. Only 30\% of the analyzed studies (7 papers) explicitly emphasized minimalism or the reduction of bureaucracy as a core pillar. Furthermore, the focus on employee engagement—essential for the sustainability of any knowledge management initiative—was even scarcer, addressed by only 26\% of the studies (6 papers).
 
-\Figure[t!](topskip=0pt, botskip=0pt, midskip=0pt){fig1.png}
-{ \textbf{Magnetization as a function of applied field.
-It is good practice to explain the significance of the figure in the caption.}\label{fig1}}
+Moreover, technological agnosticism, a key requirement to avoid proprietary lock-in in public institutions, is rarely combined with minimalist practices. Most existing tools require specific platforms or complex setups that do not align with the agile, low-friction needs of maintenance teams. Finally, only 13\% of the literature (3 studies) discussed these challenges within the specific context of public sector or judicial institutions, where resource constraints and high staff turnover are prevalent.
+
+The MPDM proposed in this paper distinguishes itself by addressing this specific void. Unlike heavy frameworks or purely automated tools, MPDM focuses on a "documentation-as-code" philosophy that balances technical rigor with process lightness, ensuring that knowledge capture becomes a natural extension of the developer’s workflow rather than an additional bureaucratic burden.
+
+\begin{table}
+\caption{\textbf{SLM Metrics and Study Distribution (N=23)}}
+\label{tab:slm_stats}
+\setlength{\tabcolsep}{3pt}
+\begin{tabular}{|p{25pt}|p{145pt}|p{25pt}|p{35pt}|}
+\hline
+ID & Metric Description & Count & \% \\
+\hline
+M1 & Focus on legacy systems documentation & 13 & 56.5\% \\
+M2 & Methodology or framework proposal & 13 & 56.5\% \\
+M3 & \textbf{Emphasis on simplicity and ease of adoption} & \textbf{7} & \textbf{30.4\%} \\
+M4 & Tool-agnostic approach & 11 & 47.8\% \\
+M5 & \textbf{Focus on employee engagement} & \textbf{6} & \textbf{26.1\%} \\
+M6 & Practical validation in real scenarios & 18 & 78.3\% \\
+M7 & \textbf{Public or judicial sector context} & \textbf{3} & \textbf{13.0\%} \\
+M8 & Documentation quality/efficiency improvement & 16 & 69.6\% \\
+\hline
+\multicolumn{4}{p{240pt}}{The low percentages in M3, M5, and M7 (highlighted) indicate the research gap addressed by the proposed MPDM.}
+\end{tabular}
+\end{table}
 
 \section{Some Common Mistakes}
 The word ``data'' is plural, not singular. The subscript for the
@@ -771,6 +801,12 @@ unnumbered footnote on the first page, not here.
 \bibitem{microsoft} Microsoft, ``Sidecar pattern,'' Sep. 2023. [Online]. Available: https://learn.microsoft.com/en-us/azure/architecture/patterns/sidecar
 
 \bibitem{nonaka} I. Nonaka and H. Takeuchi, \emph{The Knowledge-Creating Company: How Japanese Companies Create the Dynamics of Innovation}. Oxford, U.K.: Oxford Univ. Press, 1995.
+
+\bibitem{kitchenham} B. Kitchenham and S. Charters, ``Guidelines for performing Systematic Literature Reviews in Software Engineering,'' Keele University, UK, Tech. Rep., 2007.
+
+\bibitem{chirila} C.-B. Chirila and I. Şora, ``An analysis on the optimization of the weights scheme for a rule based key class classifier in object-oriented systems,'' in \emph{Proc. 23rd Int. Conf. on System Theory, Control and Computing (ICSTCC)}, 2019, pp. 413--418.
+
+\bibitem{belle} A. B. Belle, G. E. Boussaidi, and S. Kpodjedo, ``Combining lexical and structural information to reconstruct software layers,'' \emph{Information and Software Technology}, vol. 74, pp. 1--16, 2016.
 
 \end{thebibliography}
 
