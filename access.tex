@@ -63,7 +63,34 @@ The remainder of this paper is organized as follows. Section II reviews the rela
 
 
 \section{Related works}
-The management of technical knowledge in legacy systems is a well-established challenge in software engineering. To identify the state of the art and existing gaps, a Systematic Literature Mapping (SLM) was conducted following the guidelines proposed by Kitchenham \cite{kitchenham}. The search was performed across three major databases (ACM Digital Library, IEEE Xplore, and Scopus), initially identifying 311 studies. After applying rigorous inclusion and exclusion criteria, 23 primary studies were selected for detailed analysis. The distribution of these studies and the identified research gaps are summarized in Table \ref{tab:slm_stats}
+The management of technical knowledge in legacy systems is a well-established challenge in software engineering. To identify the state of the art and existing gaps, a Systematic Literature Mapping (SLM) was conducted following the guidelines proposed by Kitchenham \cite{kitchenham}. The search was performed across three major databases (ACM Digital Library, IEEE Xplore, and Scopus), initially identifying 311 studies. 
+
+The selection process was governed by the objective filters detailed in Table \ref{table_criteria}. After the removal of 85 duplicates, the remaining 226 unique studies underwent a title and abstract screening, which excluded 179 papers. The remaining 47 studies were subjected to a full-text quality assessment, resulting in the final selection of 22 primary studies, plus one additional study suggested during the qualification process, totaling 23 papers for detailed analysis. The distribution of these studies across the analyzed research metrics and the identified research gaps are summarized in Table \ref{tab:slm_stats}.
+
+\begin{table}
+\caption{\textbf{Inclusion and Exclusion Criteria (IC/EC)}}
+\label{table_criteria}
+\setlength{\tabcolsep}{3pt}
+\begin{tabular}{|p{25pt}|p{206pt}|}
+\hline
+ID & Criterion Description \\
+\hline
+\multicolumn{2}{|c|}{\textit{Inclusion Criteria}} \\
+\hline
+IC1 & Studies addressing knowledge management tools or practices in software development contexts. \\
+IC2 & Research discussing minimalist or technologically agnostic approaches to software documentation. \\
+IC3 & Peer-reviewed papers published in recognized computer science journals or conferences. \\
+IC4 & Studies covering activities related to the software lifecycle, such as maintenance and versioning. \\
+\hline
+\multicolumn{2}{|c|}{\textit{Exclusion Criteria}} \\
+\hline
+EC1 & Studies not directly related to software engineering or knowledge management. \\
+EC2 & Works focused exclusively on proprietary tools without considering agnostic aspects. \\
+EC3 & Non-academic sources, gray literature, or papers that were not peer-reviewed. \\
+EC4 & Duplicate documents or studies with insufficient relevance after title and abstract analysis. \\
+\hline
+\end{tabular}
+\end{table}
 
 The SLM revealed that while 56\% of the studies (13 papers) address the documentation of legacy systems directly \cite{garousi}, and another 13 papers propose structured methodologies or frameworks, there is a clear trend toward high-complexity technical solutions. For instance, several studies focus on automated reverse engineering, such as the use of PageRank algorithms to identify key classes \cite{e02} or Latent Dirichlet Allocation (LDA) to recover architectural layers \cite{e03}. While these automated approaches are valuable for technical recovery, they often overlook the human factor and the continuous ``friction'' that developers face during daily maintenance.
 
@@ -77,7 +104,7 @@ The MPDM proposed in this paper distinguishes itself by addressing this specific
 \caption{\textbf{SLM Metrics and Study Distribution (N=23)}}
 \label{tab:slm_stats}
 \setlength{\tabcolsep}{3pt}
-\begin{tabular}{|p{25pt}|p{145pt}|p{25pt}|p{35pt}|}
+\begin{tabular}{|p{25pt}|p{145pt}|p{20pt}|p{20pt}|}
 \hline
 ID & Metric Description & Count & \% \\
 \hline
@@ -135,6 +162,8 @@ The MPDM workflow is triggered by real maintenance demands rather than a predefi
     \item Consolidation: The documentation change is included in the same commit or Merge Request as the code change. Peer review validates both the logic and the associated documentation before it is integrated into the main repository.
 \end{enumerate}
 
+The MPDM serves as a conceptual framework that requires instantiation according to the organizational context. The following section details its instantiation within a public judicial environment.
+
 \section{Case study and evaluation}
 To evaluate the feasibility and perceived value of the MPDM, a qualitative case study was conducted within a development team at the Regional Labor Court of the 3rd Region (TRT3). The study aimed to determine if a minimalist, agnostic, and incremental approach could effectively mitigate technical knowledge loss in a public judicial institution.
 
@@ -147,7 +176,7 @@ A critical factor in this scenario was the heterogeneous distribution of technic
 The implementation was designed to minimize friction and leverage existing tools. The following steps were executed:
 \begin{enumerate}
     \item Central Repository: A dedicated Git repository was established on the institution's GitLab server to serve as the centralized Knowledge Base. Git was chosen because it was already the standard tool for source code versioning, eliminating the learning curve.
-    \item Initial Structure: To reduce cognitive load, the repository was pre-populated with a flexible directory structure and reference examples. This structure served as a practical guide for the team on how to organize Markdown files and maintain content standards.
+    \item Initial Structure and Metadata: To ensure replicability, a standardized directory structure was adopted, organized by project and module (e.g., /project-name/module-a/). Each Markdown file was required to follow a minimalist header containing a descriptive title, the context of the maintenance task, and the rationale for the technical decision. This setup prevents information fragmentation and guides developers in another environment to follow the same logic.
     \item Alignment Session: The MPDM principles and workflow were formally presented to the team. The focus was on explaining the ``documentation-as-code'' philosophy and the incremental nature of the model.
 \end{enumerate}
 
@@ -155,6 +184,8 @@ The implementation was designed to minimize friction and leverage existing tools
 Once the infrastructure was ready, the MPDM workflow was integrated into the team's daily routine. Documentation was triggered by real maintenance demands (bug fixes or minor evolutions).
 
 To ensure quality and consistency, a validation cycle was established. Similar to a standard code review process, the insertion or update of any documentation was conditioned on the approval of Merge Requests. Senior members with greater technical and business expertise were appointed as reviewers, materializing the principle of collective responsibility and ensuring that the registered knowledge was both accurate and useful \cite{antoniol}.
+
+The evaluation was conducted over a six-month period, utilizing direct observation and periodic evaluation of the generated knowledge. This approach allows the capture of nuanced perceptions regarding ``friction'' and ``perceived value,'' which are critical for evaluating minimalist models where traditional objective metrics, such as code-to-comment ratios or line counts, may fail to represent the actual quality and utility of the documentation produced.
 
 \section{Results and discussion}
 The evaluation of the MPDM revealed a combination of immediate benefits and contextual challenges that provide significant insights into technical knowledge management in public institutions.
@@ -183,7 +214,7 @@ Technical knowledge loss in legacy systems represents a critical risk to the sus
 
 The primary contribution of this research is the systematization of minimalist and agnostic principles into a cohesive framework. The application of the ``Sidecar'' and ``Strangler Fig'' patterns to knowledge management provides a novel strategy for incrementally modernizing technical records without the need for disruptive migrations. The case study conducted at the Regional Labor Court (TRT3) demonstrated that the model is highly compatible with modern development routines, leading to organic adoption by the team and the consolidation of knowledge across dozens of projects.
 
-Despite these contributions, this study has limitations. The case study was conducted within a single organizational context, and the low volume of maintenance demands for legacy systems during the study period limited the generation of a larger volume of new documentation. Furthermore, the evaluation was primarily qualitative, relying on team perceptions and direct observations.
+Despite these contributions, this study has limitations. The case study was conducted within a single organizational context, and the low volume of maintenance demands for legacy systems during the study period limited the generation of a larger volume of new documentation. Furthermore, while the evaluation relied primarily on qualitative data (perceptions and observations) without long-term objective metrics, such as precise onboarding time reduction, this approach was chosen to capture the cultural shift and team engagement, which are the primary barriers to documentation sustainability. Future works should address this by implementing quantitative KPIs to complement the findings.
 
 Future research should focus on validating the MPDM in diverse organizational settings, including private sector companies with different maturity levels. Additionally, there is significant potential for automation, such as the development of tools to generate navigable web portals from Markdown repositories and the creation of ``linters'' or automated validators to ensure documentation consistency. Finally, developing quantitative metrics to measure the impact of MPDM on developer onboarding time and maintenance efficiency would provide robust empirical evidence of its long-term benefits.
 
